@@ -1,3 +1,9 @@
-# monad
+monad
+=====
 
-just a test
+An OTP application
+
+Build
+-----
+
+    $ rebar3 compile
