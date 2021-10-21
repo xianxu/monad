@@ -8,7 +8,8 @@
          test_monad/0, 
          multi_step/1,
          multi_step1/1,
-         multi_step2/1
+         multi_step2/1,
+         multi_step2a/1
         ]).
 
 test_cut() ->
@@ -21,7 +22,8 @@ test_monad() ->
 
 multi_step(Input) ->
     do([ error_m ||
-         Res <- step1(Input),
+         Input1 = {input, Input},
+         Res <- step1(Input1),
          Final <- step2(Res),
          Final
        ]).
@@ -40,6 +42,21 @@ multi_step2(Input) ->
     {ok, Final} = step2(Res),
     Final.
 
+
+multi_step2a(Input) ->
+    try
+        multi_step2a_inner(Input)
+    catch
+        failure2 ->
+            {error, failure2};
+        bagarg_step2 ->
+            {error, bagarg_step2}
+    end.
+
+multi_step2a_inner(Input) ->
+    Res = step1a(Input),
+    step2a(Res).
+
 % utilities
 add(A, B) ->
     A + B.
@@ -57,4 +74,18 @@ step2({input, fail2}) ->
     {error, failure2};
 step2(Other) ->
     {error, {bagarg_step2, Other}}.
+
+step1a({input, good}) ->
+    {input, fine};
+step1a({input, fail2}) ->
+    {input, fail2};
+step1a(Other) ->
+    throw({bagarg_step1, Other}).
+
+step2a({input, fine}) ->
+    result;
+step2a({input, fail2}) ->
+    throw(failure2);
+step2a(Other) ->
+    throw({bagarg_step2, Other}).
 

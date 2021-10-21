@@ -1,0 +1,16 @@
+{"1.2.0",
+[{<<"argparse">>,{pkg,<<"argparse">>,<<"1.1.4">>},1},
+ {<<"erlando">>,
+  {git,"https://github.com/xianxu/erlando.git",
+       {ref,"0ccf9d7ba3521975976dc5cf097a1ce82c73c8c1"}},
+  0},
+ {<<"erlperf">>,
+  {git,"https://github.com/max-au/erlperf.git",
+       {ref,"cfdae4fa38d27f0726ef57922130ab53f88bdc62"}},
+  0}]}.
+[
+{pkg_hash,[
+ {<<"argparse">>, <<"A9F83748FABB1AF2A329484434E542FA02ADE6B6FEE58F5EDA15E3E471359992">>}]},
+{pkg_hash_ext,[
+ {<<"argparse">>, <<"AC825D3B52CA64F25A4867D70324FBE940ED9BFC2CB9C8826E0B88D7BF7F73F3">>}]}
+].
